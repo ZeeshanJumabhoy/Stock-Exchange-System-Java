@@ -1,0 +1,34 @@
+CREATE TABLE customer (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    address TEXT,
+    unique_number VARCHAR(20) UNIQUE,
+    cnic VARCHAR(13) UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    confirm_password VARCHAR(255) NOT NULL,
+    type VARCHAR(50) NOT NULL
+);
+select * from customer;
+ALTER TABLE customer
+DROP COLUMN address;
+ALTER TABLE customer
+DROP COLUMN confirm_password;
+
+CREATE TABLE stock (
+    id SERIAL PRIMARY KEY,
+    stockname VARCHAR(255) NOT NULL,
+    price numeric NOT NULL
+);
+CREATE TABLE insider (
+    id SERIAL PRIMARY KEY,
+    stockname VARCHAR(255) NOT NULL,
+    inside VARCHAR(255) NOT NULL
+);
+CREATE TABLE payment (
+    payment_id SERIAL PRIMARY KEY,
+    amount DOUBLE PRECISION NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    reference_id INTEGER REFERENCES customer(id)
+);
+select * from payment;
